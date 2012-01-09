@@ -1,11 +1,19 @@
 (ns cs-alias-clj.core
   (:gen-class)
-  (:import (java.io BufferedReader FileReader)))
+  (:use clojure.java.io))
 
 (defn read-ff
   "Reads smth words from file to list"
   [filename]
-  (line-seq (BufferedReader. (FileReader. filename))))
+  (let [rdr (reader filename)]
+    (line-seq rdr)))
+
+(defn write-ff
+  "Write smth string to file"
+  [filename string]
+  (let [wrtr (writer filename)]
+    (.write wrtr string)
+    (.close wrtr)))
 
 (defn make-item-cell
   "Create table cell from given items list"
@@ -110,13 +118,38 @@
                   "\n\\newpage\n"))))))
 
 (defn make-word-cards
-  ""
+  "Create tables with word cards from file words.txt"
   [cards-on-col cards-on-row words-on-card]
   (make-item-cards (read-ff "words.txt")
                    cards-on-col cards-on-row words-on-card))
 
 (defn make-people-cards
-  ""
+  "Create tables with people cards from file people.txt"
   [cards-on-col cards-on-row people-on-card]
-  (make-item-cell (read-ff "people.txt")
+  (make-item-cards (read-ff "people.txt")
                   cards-on-col cards-on-row people-on-card))
+
+(defn make-tex-doc
+  "Create LaTeX document"
+  [cards-on-col cards-on-row]
+  (defn preamble []
+    (str "\\documentclass[a4paper, 12pt]{article}\n"
+         "\\usepackage[T2A]{fontenc}\n"
+         "\\usepackage{ucs}\n"
+         "\\usepackage[utf8x]{inputenc}\n"
+         "\\usepackage[english, russian]{babel}\n\n"
+         "\\begin{document}\n"))
+  (str
+   (preamble)
+   (make-word-cards cards-on-col cards-on-row 8)
+   (make-people-cards cards-on-col cards-on-row 8)
+   "\\end{document}\n"))
+
+(defn -main []
+  (do
+    (print "Hello! Now, I am reading words and people names from ")
+    (print "files words.txt and people.txt and will be create LaTeX ")
+    (print "source file alias.tex with cards for board game Alias. ")
+    (print "In this file you find descriptions of tables 3x3 with ")
+    (println "cards on every page.")
+    (write-ff "alias.tex" (make-tex-doc 3 3))))
