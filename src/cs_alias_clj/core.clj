@@ -1,6 +1,7 @@
 (ns cs-alias-clj.core
   (:gen-class)
-  (:use clojure.java.io))
+  (:use clojure.java.io)
+  (:use clojure.math.numeric-tower))
 
 (defn read-ff
   "Reads smth words from file to list"
@@ -85,7 +86,15 @@
                            (= counter 0) (str result-str "}\n")
                            :else (recur
                                   (- counter 1)
-                                  (str result-str "l|")))))]
+                                  (str result-str
+                                       "p{"
+                                       (float (/ (floor (*
+                                                         (float (/ 1 cards-on-row))
+                                                         10))
+                                                 10))
+                                       "\\linewidth"
+                                       "}"
+                                       "|")))))]
      (cond
       (= (count il) 0) (str result-str "\\hline\n\\end{tabular}")
       :else (recur (nthnext il (count-of-items4string))
@@ -137,7 +146,10 @@
          "\\usepackage[T2A]{fontenc}\n"
          "\\usepackage{ucs}\n"
          "\\usepackage[utf8x]{inputenc}\n"
-         "\\usepackage[english, russian]{babel}\n\n"
+         "\\usepackage[english, russian]{babel}\n"
+         "\\usepackage[left=0mm,right=0mm,"
+         "top=0mm,bottom=0mm,bindingoffset=0cm]{geometry}\n"
+         "\\parindent=0mm\n\n"
          "\\begin{document}\n"))
   (str
    (preamble)

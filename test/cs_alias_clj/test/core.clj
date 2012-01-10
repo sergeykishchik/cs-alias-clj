@@ -75,7 +75,7 @@
    "Test make-item-table (items < needed items)")
   (is
    (= (make-item-table '("a") 1 1 1)
-      (str "\\begin{tabular}{|l|}\n"
+      (str "\\begin{tabular}{|p{1.0\\linewidth}|}\n"
            "\\hline\n"
            "\\begin{enumerate}\n"
            "\\item a\n"
@@ -86,7 +86,7 @@
    "Test make-item-table (items = needed items)")
   (is
    (= (make-item-table '("a" "b" "c") 1 1 1)
-      (str "\\begin{tabular}{|l|}\n"
+      (str "\\begin{tabular}{|p{1.0\\linewidth}|}\n"
            "\\hline\n"
            "\\begin{enumerate}\n"
            "\\item a\n"
@@ -102,7 +102,7 @@
    "Test make-item-cards (items < needed items)")
   (is
    (= (make-item-cards '("a") 1 1 1)
-      (str "\\begin{tabular}{|l|}\n"
+      (str "\\begin{tabular}{|p{1.0\\linewidth}|}\n"
            "\\hline\n"
            "\\begin{enumerate}\n"
            "\\item a\n"
@@ -114,7 +114,7 @@
    "Test make-item-cards (items = needed items)")
   (is
    (= (make-item-cards '("a" "b" "c") 1 1 1)
-      (str "\\begin{tabular}{|l|}\n"
+      (str "\\begin{tabular}{|p{1.0\\linewidth}|}\n"
            "\\hline\n"
            "\\begin{enumerate}\n"
            "\\item a\n"
@@ -123,7 +123,7 @@
            "\n"
            "\\hline\n\\end{tabular}"
            "\n\\newpage\n"
-           "\\begin{tabular}{|l|}\n"
+           "\\begin{tabular}{|p{1.0\\linewidth}|}\n"
            "\\hline\n"
            "\\begin{enumerate}\n"
            "\\item b\n"
@@ -132,7 +132,7 @@
            "\n"
            "\\hline\n\\end{tabular}"
            "\n\\newpage\n"
-           "\\begin{tabular}{|l|}\n"
+           "\\begin{tabular}{|p{1.0\\linewidth}|}\n"
            "\\hline\n"
            "\\begin{enumerate}\n"
            "\\item c\n"
