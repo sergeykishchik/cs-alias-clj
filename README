@@ -1,0 +1,19 @@
+# cs-alias-clj
+
+Set of scripts and programs, which helps create cards for "Alias"
+board game.
+
+## Usage
+
+Just put words for game in file words.txt and put people names to people.txt
+end execute make-cards.sh. After all you get alias.pdf file with cards in
+table inside.
+Note: you need JVM, and LaTeX for use this set of tools. And also you need an 
+Internet connection for compile Clojure code (lein downloads all libraries
+from internet-repository).
+
+## License
+
+Copyright (C) 2012 h0rr0rr_drag0n
+
+Distributed under the Eclipse Public License, the same as Clojure.
