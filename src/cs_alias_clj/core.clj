@@ -159,9 +159,9 @@
 
 (defn -main []
   (do
-    (print "Hello! Now, I am reading words and people names from ")
-    (print "files words.txt and people.txt and will be create LaTeX ")
-    (print "source file alias.tex with cards for board game Alias. ")
-    (print "In this file you find descriptions of tables 3x3 with ")
+    (print "Hello! Now I am reading words and people names from ")
+    (print "files 'words.txt' and 'people.txt'. LaTeX source file ")
+    (print "'alias.tex' containing cards for 'Alias' will be generated. ")
+    (print "That file will contain the descriptions of 3x3 tables of ")
     (println "cards on every page.")
     (write-ff "alias.tex" (make-tex-doc 3 3))))
