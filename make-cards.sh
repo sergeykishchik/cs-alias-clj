@@ -14,17 +14,17 @@ if [ ! -e $PEOPLE ]; then
     exit 1
 fi
 
-#Check - number of words in the file enough to fill at least one table 3x3x8
+#Check - there should be enough words in the file to fill at least one table 3x3x8
 RESULT=$((`wc -l $WORDS | sed -r 's/([0-9]+) .*/\1/g'` / 72))
 if [ "$RESULT" -eq "0" ]; then
-    echo "Number of words in the file not enough to fill at least one table 3x3x8"
-    echo "I need more or equal 72 words in $WORDS"
+    echo "Not enough words in the input file to generate at least one table 3x3x8"
+    echo "Your should specify not less than 72 words in $WORDS"
     exit 1
 fi
 RESULT=$((`wc -l $WORDS | sed -r 's/([0-9]+) .*/\1/g'` / 72))
 if [ "$RESULT" -eq "0" ]; then
-    echo "Number of words in the file not enough to fill at least one table 3x3x8"
-    echo "I need more or equal 72 words in $PEOPLE"
+    echo "Not enough words in the input file to generate at least one table 3x3x8"
+    echo "Your should specify not less than 72 words in $PEOPLE"
     exit 1
 fi
 
@@ -35,5 +35,5 @@ fi
 java -jar $CS_ALIAS_CLJ
 pdflatex alias.tex
 echo
-echo "Result in alias.pdf"
+echo "Generated alias.pdf"
 echo
